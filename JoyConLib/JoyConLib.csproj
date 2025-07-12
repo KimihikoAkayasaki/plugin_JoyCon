@@ -5,9 +5,5 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
-    <ItemGroup>
-        <PackageReference Include="HidApi.Net" Version="1.1.0" />
-    </ItemGroup>
-
 </Project>
 

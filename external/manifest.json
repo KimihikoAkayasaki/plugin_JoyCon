@@ -1,7 +1,7 @@
 {
-  "version": "1.0.0.1",
-  "display_name": "PSMove Service",
-  "download_":  "plugin_JoyCon.zip",
-  "changelog": "What the f'ck is a kilometer?!",
-  "guid": "K2VRTEAM-AME2-APII-DVCE-DVCEPSMOVEEX"
+	"version": "1.0.0.0",
+	"display_name": "Joy-Con",
+	"download_": "plugin_JoyCon.zip",
+	"changelog": "Added everything.",
+	"guid": "K2VRTEAM-AME2-APII-DVCE-DVCENDJOYCON"
 }

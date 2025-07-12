@@ -1,5 +1,3 @@
-using HidApi;
-
 namespace JoyConTest;
 
 internal static class Program

@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "plugin_OpenVR": {
+    "plugin_JoyCon": {
       "commandName": "Project"
     }
   }

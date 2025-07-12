@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace JoyConLib;
@@ -60,6 +61,7 @@ public class HidApi
     public static extern int hid_write(IntPtr device, byte[] data, UIntPtr length);
 }
 
+[SuppressMessage("ReSharper", "UnusedMember.Global")]
 internal struct HidDeviceInfo
 {
     public string Path;

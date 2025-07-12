@@ -1,7 +1,6 @@
 #define DEBUG
 
 using System.Diagnostics;
-using HidApi;
 
 namespace JoyConLib;
 
@@ -150,6 +149,15 @@ public class Joycon
         return Vector3.LookRotation(new Vector3(Jb.X, Ib.X, Kb.X), -new Vector3(Jb.Z, Ib.Z, Kb.Z));
     }
 
+    public System.Numerics.Quaternion Orientation
+    {
+        get
+        {
+            var q = GetVector();
+            return new System.Numerics.Quaternion((float)q.X, (float)q.Y, (float)q.Z, (float)q.W);
+        }
+    }
+
     public int Attach(byte leds = 0x0)
     {
         ControllerState = State.ATTACHED;
@@ -214,9 +222,9 @@ public class Joycon
                     IsLeft ? "Left" : "Right", RawUp), DebugType.CUSTOM1);
             }
 
-            if (_tsEn == rawBuf[1]) DebugPrint(string.Format("Duplicate timestamp enqueued. TS: {0:X2}", _tsEn), DebugType.THREADING);
+            if (_tsEn == rawBuf[1]) DebugPrint($"Duplicate timestamp enqueued. TS: {_tsEn:X2}", DebugType.THREADING);
             _tsEn = rawBuf[1];
-            DebugPrint(string.Format("Enqueue. Bytes read: {0:D}. Timestamp: {1:X2}", ret, rawBuf[1]), DebugType.THREADING);
+            DebugPrint($"Enqueue. Bytes read: {ret:D}. Timestamp: {rawBuf[1]:X2}", DebugType.THREADING);
         }
 
         return ret;
@@ -276,7 +284,7 @@ public class Joycon
                         ExtractImuValues(reportBuf);
                 }
 
-                if (_tsDe == reportBuf[1]) DebugPrint(string.Format("Duplicate timestamp dequeued. TS: {0:X2}", _tsDe), DebugType.THREADING);
+                if (_tsDe == reportBuf[1]) DebugPrint($"Duplicate timestamp dequeued. TS: {_tsDe:X2}", DebugType.THREADING);
                 _tsDe = reportBuf[1];
                 //DebugPrint(string.Format("Dequeue. Queue length: {0:d}. Packet ID: {1:X2}. Timestamp: {2:X2}. Lag to dequeue: {3:s}. Lag between packets (expect 15ms): {4:s}",
                 //  reports.Count, report_buf[0], report_buf[1], System.DateTime.Now.Subtract(rep.GetTime()), rep.GetTime().Subtract(ts_prev)), DebugType.THREADING);
@@ -284,9 +292,9 @@ public class Joycon
             }
 
             ProcessButtonsAndStick(reportBuf);
-            if (_rumbleObj.TimedRumble)
-                if (_rumbleObj.T < 0)
-                    _rumbleObj.set_vals(160, 320, 0);
+            if (!_rumbleObj.TimedRumble) return;
+            if (_rumbleObj.T < 0)
+                _rumbleObj.set_vals(160, 320, 0);
             // todo123 rumble_obj.t -= Time.deltaTime;
         }
     }
@@ -480,6 +488,12 @@ public class Joycon
         if (_rumbleObj.TimedRumble == false || _rumbleObj.T < 0) _rumbleObj = new Rumble(lowFreq, highFreq, amp, time);
     }
 
+    public void TryRumble()
+    {
+        if (_rumbleObj.GetData() is null) return;
+        SendRumble(_rumbleObj.GetData());
+    }
+
     private void SendRumble(byte[] buffer)
     {
         var buf = new byte[ReportLen];
@@ -503,13 +517,13 @@ public class Joycon
         buf[0] = 0x1;
         if (_globalCount == 0xf) _globalCount = 0;
         else ++_globalCount;
-        if (print) PrintArray(buf, DebugType.COMMS, len, 11, "Subcommand 0x" + string.Format("{0:X2}", sc) + " sent. Data: 0x{0:S}");
+        if (print) PrintArray(buf, DebugType.COMMS, len, 11, "Subcommand 0x" + $"{sc:X2}" + " sent. Data: 0x{0:S}");
         ;
         HidApi.hid_write(_handle, buf, new UIntPtr(len + 11));
         var res = HidApi.hid_read_timeout(_handle, response, new UIntPtr(ReportLen), 50);
         if (res < 1) DebugPrint("No response.", DebugType.COMMS);
         else if (print)
-            PrintArray(response, DebugType.COMMS, ReportLen - 1, 1, "Response ID 0x" + string.Format("{0:X2}", response[0]) + ". Data: 0x{0:S}");
+            PrintArray(response, DebugType.COMMS, ReportLen - 1, 1, "Response ID 0x" + $"{response[0]:X2}" + ". Data: 0x{0:S}");
         return response;
     }
 
