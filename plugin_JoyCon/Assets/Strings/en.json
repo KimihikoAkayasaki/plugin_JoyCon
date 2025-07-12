@@ -1,0 +1,89 @@
+{
+  "language": "en",
+  "messages": [
+    {
+      "id": "/Plugins/PSMS/Statuses/Success",
+      "translation": "Success!\nS_OK\nEverything's good!"
+    },
+    {
+      "id": "/Plugins/PSMS/Statuses/NotConnected",
+      "translation": "Client connection error!\nE_PSMS_NOT_CONNECTED\nCheck if JoyCon is running, working and accessible by clients."
+    },
+    {
+      "id": "/Plugins/PSMS/Statuses/NotRunning",
+      "translation": "API connection error!\nE_PSMS_NOT_INITIALIZED\nCheck if JoyCon is running, working and accessible by clients."
+    },
+    {
+      "id": "/Plugins/PSMS/Statuses/NoJoints",
+      "translation": "No controllers found!\nE_PSMS_NO_JOINTS\nCheck if any controllers are connected, and if JoyCon is working properly."
+    },
+    {
+      "id": "/Plugins/PSMS/Settings/Contents/Dim",
+      "translation": "If you're using PSMS for rotation tracking only, you can dim controller LED lights to save power."
+    },
+    {
+      "id": "/Plugins/PSMS/Settings/Labels/Dim",
+      "translation": "Dim PSMS lights:"
+    },
+    {
+      "id": "/Plugins/Kinect360/Dependencies/Eye/Name",
+      "translation": "PSEye Drivers"
+    },
+    {
+      "id": "/Plugins/Kinect360/Dependencies/PSMS/Name",
+      "translation": "JoyCon"
+    },
+    {
+      "id": "/Plugins/Kinect360/Dependencies/VDM/Name",
+      "translation": "Virtual Device Manager"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Downloading/Service",
+      "translation": "Downloading PSMove Service"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Exceptions/Service/Extraction",
+      "translation": "PSMove Service extraction failed! Exception: {0}"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Exceptions/Service/Installation",
+      "translation": "PSMove Service installation failed! Exception: {0}"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Downloading/VDM",
+      "translation": "Downloading PSMS-VDManager"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Exceptions/VDM/Extraction",
+      "translation": "PSMS-VDM extraction failed! Exception: {0}"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Exceptions/VDM/Installation",
+      "translation": "PSMS-VDM installation failed! Exception: {0}"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Downloading/Eye",
+      "translation": "Downloading PSEye Drivers"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Exceptions/Eye/Extraction",
+      "translation": "Archive extraction failed! Exception: {0}"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Installing/Eye",
+      "translation": "Setting up PSEye Drivers"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Installation/Eye/Success",
+      "translation": "PSEye Drivers installed successfully!"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Installation/Eye/Fail",
+      "translation": "PSEye Drivers installation failed! Exit code: {0}"
+    },
+    {
+      "id": "/Plugins/PSMS/Stages/Exceptions/Service/Installation",
+      "translation": "PSEye Drivers installation failed! Exception: {0}"
+    }
+  ]
+}
