@@ -31,7 +31,7 @@ public class JoyCon : ITrackingDevice
     public bool IsSettingsDaemonSupported => false;
     public object SettingsInterfaceRoot => null;
 
-    public bool IsInitialized => true;
+    public bool IsInitialized => DeviceStatus is 0;
     public bool IsSkeletonTracked { get; private set; }
     public int DeviceStatus { get; private set; } = 1;
 
@@ -190,7 +190,7 @@ public class JoyCon : ITrackingDevice
                 if (Manager.J.Count >= 2) AddController("Joy-Con (R)");
 
                 // Re-compute the status
-                DeviceStatus = 1;
+                DeviceStatus = 0;
 
                 Host?.Log("Adding placeholders...");
                 if (Manager.J.Count < 1)
@@ -198,7 +198,7 @@ public class JoyCon : ITrackingDevice
                     AddController("⛓️‍💥 Joy-Con (L)");
                     AddController("⛓️‍💥 Joy-Con (R)");
 
-                    DeviceStatus = 0;
+                    DeviceStatus = 1;
                 }
             }
 
